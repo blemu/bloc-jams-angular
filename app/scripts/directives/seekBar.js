@@ -1,12 +1,12 @@
 (function() {
      function seekBar($document) {
          var calculatePercent = function(seekBar, event) {
-     var offsetX = event.pageX - seekBar.offset().left;
-     var seekBarWidth = seekBar.width();
-     var offsetXPercent = offsetX / seekBarWidth;
-     offsetXPercent = Math.max(0, offsetXPercent);
-     offsetXPercent = Math.min(1, offsetXPercent);
-     return offsetXPercent;
+             var offsetX = event.pageX - seekBar.offset().left;
+             var seekBarWidth = seekBar.width();
+             var offsetXPercent = offsetX / seekBarWidth;
+             offsetXPercent = Math.max(0, offsetXPercent);
+             offsetXPercent = Math.min(1, offsetXPercent);
+             return offsetXPercent;
         };
          return {
          templateUrl: '/templates/directives/seek_bar.html',
@@ -29,7 +29,9 @@
              scope.fillStyle = function() {
                  return {width: percentString()};
                 };
-             
+             scope.thumbStyle = function() {
+                 return {width: percentString()};
+                };
              scope.onClickSeekBar = function(event) {
              var percent = calculatePercent(seekBar, event);
              scope.value = percent * scope.max;
@@ -38,9 +40,11 @@
              scope.trackThumb = function() {
                  $document.bind('mousemove.thumb', function(event) {
                      var percent = calculatePercent(seekBar, event);
-                     scope.$apply(function() {
-                         scope.value = percent * scope.max;
-                     });
+                     
+                             scope.$apply(function() {
+                     scope.value = percent * scope.max;
+                       });     
+                   
                  });
 
                  $document.bind('mouseup.thumb', function() {
