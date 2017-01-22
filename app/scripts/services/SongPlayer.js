@@ -51,7 +51,6 @@
         */
         SongPlayer.currentSong = null;  
         
-         
         /**
         * @function playSong
         * @desc plays currently stoped song
@@ -134,6 +133,12 @@
              }
          };
          
+         SongPlayer.setVolume = function(volume) {
+            if (currentBuzzObject) {
+               currentBuzzObject.setVolume(volume);
+             }
+             
+         };
          return SongPlayer;
      }
      angular
